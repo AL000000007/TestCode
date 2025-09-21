@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Hi skolotais</h1>
+    <p>Šī mājaslapa izveidota izmantojot Flask framework.</p>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <img src="https://s1.zerochan.net/Hori.Kyouko.600.4312393.jpg" 
+             alt="Welcome" 
+             style="width: 300px; height: auto; border-radius: 10px; animation: pulse 2s infinite;">
+    </div>
+    
+    <style>
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+{% endblock %}

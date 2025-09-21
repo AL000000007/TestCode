@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Laiks un datums</h1>
+    
+    <div style="text-align: center; margin: 40px 0;">
+        <div id="datetime" style="font-size: 2.5rem; color: #6e8efb; padding: 20px; background: rgba(255, 255, 255, 0.7); border-radius: 10px; display: inline-block; min-width: 300px; animation: pulse 1s infinite;">
+            {{ current_time }}
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px;">
+    </div>
+    
+    <script>
+        const eventSource = new EventSource('/stream');
+        
+        eventSource.onmessage = function(event) {
+            document.getElementById('datetime').textContent = event.data;
+            
+            const element = document.getElementById('datetime');
+            element.style.animation = 'none';
+            setTimeout(() => {
+                element.style.animation = 'pulse 1s infinite';
+            }, 10);
+        };
+    </script>
+    
+    <style>
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 rgba(110, 142, 251, 0.4); }
+            50% { transform: scale(1.02); box-shadow: 0 0 20px rgba(110, 142, 251, 0.8); }
+            100% { transform: scale(1); box-shadow: 0 0 0 rgba(110, 142, 251, 0.4); }
+        }
+    </style>
+{% endblock %}
